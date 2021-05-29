@@ -15,7 +15,7 @@ import os
 #3-hit or stand
 # (ignore insurance, split, double down)
 #4-if player not 21 dealer hits till 21 or bust
-#special rules-face=10
+#            face=10
 #            Ace=1 or 11
 
 
@@ -204,21 +204,24 @@ while True:
     player_hand = Hand()
     player_hand.add_card(deck.deal())
     player_hand.add_card(deck.deal())
+    player_hand.adjust_for_ace()
     dealer_hand = Hand()
     dealer_hand.add_card(deck.deal())
     dealer_hand.add_card(deck.deal())
+    dealer_hand.adjust_for_ace()
     player_chips.take_bet()
     show_some(player_hand,dealer_hand)
     #Gameplay
     while PLAYING:
+        if player_hand.value==21:
+            player_21()
+            break
         hit_or_stand(deck,player_hand)
         show_some(player_hand,dealer_hand)
         if player_hand.value > 21:
             player_busts(player_chips)
             break
-        if player_hand.value==21:
-            player_21()
-            break
+
 
     if player_hand.value <= 21:
         while dealer_hand.value < 17:
