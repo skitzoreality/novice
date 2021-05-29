@@ -13,7 +13,7 @@ import os
 #1-player place bet
 #2-cards dealt
 #3-hit or stand
-#(ignore insurance, split, double down)
+# (ignore insurance, split, double down)
 #4-if player not 21 dealer hits till 21 or bust
 #special rules-face=10
 #            Ace=1 or 11
